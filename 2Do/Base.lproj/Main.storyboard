@@ -13,7 +13,7 @@
         <!--List Controller-->
         <scene sceneID="vji-3f-gns">
             <objects>
-                <tableViewController id="wWo-yS-4lw" customClass="ListController" customModule="_Do" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController providesPresentationContextTransitionStyle="YES" id="wWo-yS-4lw" customClass="ListController" customModule="_Do" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Kpj-NK-bt7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -35,6 +35,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="E1E-GD-Gn4" kind="show" identifier="showDetail" id="VKQ-bV-aHf"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -99,6 +102,64 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IkW-d7-2Yf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2367.1999999999998" y="52.623688155922046"/>
+        </scene>
+        <!--DetailVC-->
+        <scene sceneID="bDH-5d-V3t">
+            <objects>
+                <viewController id="E1E-GD-Gn4" customClass="DetailVC" customModule="_Do" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rR5-Cx-HAo"/>
+                        <viewControllerLayoutGuide type="bottom" id="91Q-Hv-byI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jnr-Or-3IJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z2B-vB-Yez">
+                                <rect key="frame" x="32" y="318.5" width="311" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OEP-Va-ki6">
+                                <rect key="frame" x="0.0" y="611" width="375" height="56"/>
+                                <color key="backgroundColor" red="0.87135463950000003" green="0.31789511440000001" blue="0.13912782069999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="Qqf-KS-R4b"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Delete">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteItem:" destination="E1E-GD-Gn4" eventType="touchUpInside" id="PwX-h4-7kP"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="OEP-Va-ki6" secondAttribute="trailing" id="4Xx-hO-SVd"/>
+                            <constraint firstItem="91Q-Hv-byI" firstAttribute="top" secondItem="OEP-Va-ki6" secondAttribute="bottom" id="CCn-4j-nMO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="z2B-vB-Yez" secondAttribute="trailing" constant="16" id="Dqe-t3-lzB"/>
+                            <constraint firstItem="OEP-Va-ki6" firstAttribute="leading" secondItem="jnr-Or-3IJ" secondAttribute="leading" id="PQp-EK-770"/>
+                            <constraint firstItem="z2B-vB-Yez" firstAttribute="leading" secondItem="jnr-Or-3IJ" secondAttribute="leadingMargin" constant="16" id="ViT-6z-EeT"/>
+                            <constraint firstItem="z2B-vB-Yez" firstAttribute="centerY" secondItem="jnr-Or-3IJ" secondAttribute="centerY" id="xAC-fV-sxo"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="2Mz-oG-cdt">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="7vU-sM-3gX">
+                            <connections>
+                                <action selector="save:" destination="E1E-GD-Gn4" id="enL-kK-74o"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="detailTextField" destination="z2B-vB-Yez" id="MtJ-XI-Qd2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DJT-lD-z0s" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1514" y="907"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qrV-Oe-Ssf">

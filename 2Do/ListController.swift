@@ -75,6 +75,13 @@ class ListController: UITableViewController {
             let addTaskController = navigationController.topViewController as! AddTaskVC
             
             addTaskController.managedObjectContext = self.managedObjectContext
+        } else if segue.identifier == "showDetail" {
+            guard let detailVC = segue.destination as? DetailVC, let indexPath = tableView.indexPathForSelectedRow else {
+                return
+            }
+            let item = fetchedResultsController.object(at: indexPath)
+            detailVC.item = item
+            detailVC.context = self.managedObjectContext
         }
     }
 
