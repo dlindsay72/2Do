@@ -11,34 +11,6 @@ import CoreData
 
 class CoreDataStack {
     
-//    private(set) lazy var applicationDocumentsDirectory: URL = {
-//        let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-//        let endIndex = urls.index(before: urls.endIndex)
-//        
-//        return urls[endIndex]
-//    }()
-//    
-//    
-//    private(set) lazy var managedObjectModel: NSManagedObjectModel = {
-//        let modelUrl = Bundle.main.url(forResource: "2Do", withExtension: "momd")!
-//        
-//        return NSManagedObjectModel(contentsOf: modelUrl)!
-//    }()
-//    
-//    private(set) lazy var persistantStoreCoordinator: NSPersistentStoreCoordinator = {
-//        let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-//        let url = self.applicationDocumentsDirectory.appendingPathComponent("2Do.sqlite")
-//        
-//        do {
-//            try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url)
-//        } catch {
-//            print(error)
-//            abort()
-//        }
-//        
-//        return coordinator
-//    }()
-    
     lazy var managedObjectContext: NSManagedObjectContext = {
         let container = self.persistentContainer
         return container.viewContext
@@ -54,6 +26,18 @@ class CoreDataStack {
         
         return container
     }()
+}
+
+extension NSManagedObjectContext {
+    func saveChanges() {
+        if self.hasChanges {
+            do {
+                try save()
+            } catch {
+                fatalError("Error: \(error.localizedDescription)")
+            }
+        }
+    }
 }
 
 
