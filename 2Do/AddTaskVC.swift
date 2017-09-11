@@ -7,21 +7,19 @@
 //
 
 import UIKit
+import CoreData
 
 class AddTaskVC: UIViewController {
     
     
     @IBOutlet weak var textField: UITextField!
+    
+    let managedObjectContext = CoreDataStack().managedObjectContext
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func cancel(_ sender: Any) {
@@ -29,6 +27,13 @@ class AddTaskVC: UIViewController {
     }
 
     @IBAction func save(_ sender: Any) {
+        
+        guard let text = textField.text, !text.isEmpty else { return }
+        
+        let item = NSEntityDescription.insertNewObject(forEntityName: "Item", into: managedObjectContext) as! Item
+        item.text = text
+        
+        
         dismiss(animated: true, completion: nil)
     }
     
