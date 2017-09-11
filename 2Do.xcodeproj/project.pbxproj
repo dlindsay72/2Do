@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B2A0F481F671C1D004AB155 /* ToDoFetchedResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2A0F471F671C1D004AB155 /* ToDoFetchedResultsController.swift */; };
 		7B95C5B21F66E726004D65D3 /* ListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B95C5B11F66E726004D65D3 /* ListController.swift */; };
 		7B95C5B41F66E817004D65D3 /* AddTaskVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B95C5B31F66E817004D65D3 /* AddTaskVC.swift */; };
 		7B95C5B71F66EDD0004D65D3 /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B95C5B51F66EDD0004D65D3 /* Item+CoreDataClass.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7B2A0F471F671C1D004AB155 /* ToDoFetchedResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoFetchedResultsController.swift; sourceTree = "<group>"; };
 		7B95C5B11F66E726004D65D3 /* ListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListController.swift; sourceTree = "<group>"; };
 		7B95C5B31F66E817004D65D3 /* AddTaskVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTaskVC.swift; sourceTree = "<group>"; };
 		7B95C5B51F66EDD0004D65D3 /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Item+CoreDataClass.swift"; path = "../Item+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 			children = (
 				7B95C5B11F66E726004D65D3 /* ListController.swift */,
 				7B95C5B31F66E817004D65D3 /* AddTaskVC.swift */,
+				7B2A0F471F671C1D004AB155 /* ToDoFetchedResultsController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -188,6 +191,7 @@
 				7B95C5B71F66EDD0004D65D3 /* Item+CoreDataClass.swift in Sources */,
 				7BDF85A71F6064FE00C07124 /* CoreDataStack.swift in Sources */,
 				7B95C5B21F66E726004D65D3 /* ListController.swift in Sources */,
+				7B2A0F481F671C1D004AB155 /* ToDoFetchedResultsController.swift in Sources */,
 				7B95C5B41F66E817004D65D3 /* AddTaskVC.swift in Sources */,
 				7BAD77BC1F631D0A00BB640F /* 2Do.xcdatamodeld in Sources */,
 				7BDF85951F60646400C07124 /* AppDelegate.swift in Sources */,

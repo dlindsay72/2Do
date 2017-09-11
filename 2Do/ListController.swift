@@ -14,24 +14,13 @@ class ListController: UITableViewController {
     let segueIdentifier = "newItem"
     let managedObjectContext = CoreDataStack().managedObjectContext
     
-    lazy var fetchedResultsController: NSFetchedResultsController<Item> = {
-        let request: NSFetchRequest<Item> = Item.fetchRequest()
-        let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
-        
-        return controller
+    lazy var fetchedResultsController: ToDoFetchedResultsController = {
+        return ToDoFetchedResultsController(managedObjectContext: self.managedObjectContext, tableView: self.tableView)
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("ListController Context: \(managedObjectContext.description)")
         
-        fetchedResultsController.delegate = self
-        
-        do {
-            try fetchedResultsController.performFetch()
-        } catch {
-            print("Error fetching item objects: \(error.localizedDescription)")
-        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -79,11 +68,7 @@ class ListController: UITableViewController {
 
 }
 
-extension ListController: NSFetchedResultsControllerDelegate {
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.reloadData()
-    }
-}
+
 
 
 
