@@ -10,21 +10,25 @@ import UIKit
 import CoreData
 
 class ListController: UITableViewController {
-    let identifier = "listItemCell"
+    let listItemIdentifier = "listItemCell"
+    let segueIdentifier = "newItem"
     let managedObjectContext = CoreDataStack().managedObjectContext
-    var items = [Item]() {
-        didSet {
-            tableView.reloadData()
-        }
-    }
+    
+    lazy var fetchedResultsController: NSFetchedResultsController<Item> = {
+        let request: NSFetchRequest<Item> = Item.fetchRequest()
+        let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        
+        return controller
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let request: NSFetchRequest<Item> = Item.fetchRequest()
+        print("ListController Context: \(managedObjectContext.description)")
+        
+        fetchedResultsController.delegate = self
         
         do {
-            items = try managedObjectContext.fetch(request)
+            try fetchedResultsController.performFetch()
         } catch {
             print("Error fetching item objects: \(error.localizedDescription)")
         }
@@ -39,21 +43,58 @@ class ListController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return fetchedResultsController.sections?.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return items.count
+        guard let section = fetchedResultsController.sections?[section] else { return 0 }
+        
+        return section.numberOfObjects
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
-        let item = items[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: listItemIdentifier, for: indexPath)
+        
+        return configureCell(cell, at: indexPath)
+    }
+    
+    private func configureCell(_ cell: UITableViewCell, at indexPath: IndexPath) -> UITableViewCell {
+        let item = fetchedResultsController.object(at: indexPath)
         
         cell.textLabel?.text = item.text
         
         return cell
     }
+    
+    //MARK:  Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == segueIdentifier {
+            let navigationController = segue.destination as! UINavigationController
+            let addTaskController = navigationController.topViewController as! AddTaskVC
+            
+            addTaskController.managedObjectContext = self.managedObjectContext
+        }
+    }
 
 }
+
+extension ListController: NSFetchedResultsControllerDelegate {
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.reloadData()
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -14,11 +14,11 @@ class AddTaskVC: UIViewController {
     
     @IBOutlet weak var textField: UITextField!
     
-    let managedObjectContext = CoreDataStack().managedObjectContext
+    var managedObjectContext: NSManagedObjectContext!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print("AddTaskVC Context: \(managedObjectContext.description)")
         // Do any additional setup after loading the view.
     }
     
