@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B0784581F6742BF00416AF2 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0784571F6742BF00416AF2 /* DataSource.swift */; };
 		7B2A0F481F671C1D004AB155 /* ToDoFetchedResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2A0F471F671C1D004AB155 /* ToDoFetchedResultsController.swift */; };
 		7B2A0F4A1F6733CB004AB155 /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2A0F491F6733CB004AB155 /* DetailVC.swift */; };
 		7B95C5B21F66E726004D65D3 /* ListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B95C5B11F66E726004D65D3 /* ListController.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7B0784571F6742BF00416AF2 /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		7B2A0F471F671C1D004AB155 /* ToDoFetchedResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoFetchedResultsController.swift; sourceTree = "<group>"; };
 		7B2A0F491F6733CB004AB155 /* DetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
 		7B95C5B11F66E726004D65D3 /* ListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListController.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				7B95C5B61F66EDD0004D65D3 /* Item+CoreDataProperties.swift */,
 				7BDF85A61F6064FE00C07124 /* CoreDataStack.swift */,
 				7BAD77BA1F631D0A00BB640F /* 2Do.xcdatamodeld */,
+				7B0784571F6742BF00416AF2 /* DataSource.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -198,6 +201,7 @@
 				7B2A0F4A1F6733CB004AB155 /* DetailVC.swift in Sources */,
 				7B95C5B41F66E817004D65D3 /* AddTaskVC.swift in Sources */,
 				7BAD77BC1F631D0A00BB640F /* 2Do.xcdatamodeld in Sources */,
+				7B0784581F6742BF00416AF2 /* DataSource.swift in Sources */,
 				7BDF85951F60646400C07124 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

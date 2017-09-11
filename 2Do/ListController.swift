@@ -9,18 +9,21 @@
 import UIKit
 import CoreData
 
+public let listItemIdentifier = "listItemCell"
+
 class ListController: UITableViewController {
-    let listItemIdentifier = "listItemCell"
+    
     let segueIdentifier = "newItem"
     let managedObjectContext = CoreDataStack().managedObjectContext
     
-    lazy var fetchedResultsController: ToDoFetchedResultsController = {
-        return ToDoFetchedResultsController(managedObjectContext: self.managedObjectContext, tableView: self.tableView)
+    lazy var dataSource: DataSource = {
+        return DataSource(tableView: self.tableView, context: self.managedObjectContext)
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.dataSource = dataSource
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,39 +31,7 @@ class ListController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Table view data source
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        let item = fetchedResultsController.object(at: indexPath)
-        managedObjectContext.delete(item)
-        managedObjectContext.saveChanges()
-    }
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return fetchedResultsController.sections?.count ?? 0
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        guard let section = fetchedResultsController.sections?[section] else { return 0 }
-        
-        return section.numberOfObjects
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: listItemIdentifier, for: indexPath)
-        
-        return configureCell(cell, at: indexPath)
-    }
-    
-    private func configureCell(_ cell: UITableViewCell, at indexPath: IndexPath) -> UITableViewCell {
-        let item = fetchedResultsController.object(at: indexPath)
-        
-        cell.textLabel?.text = item.text
-        
-        return cell
-    }
     
     //MARK: - Table View Delegate
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
@@ -79,7 +50,7 @@ class ListController: UITableViewController {
             guard let detailVC = segue.destination as? DetailVC, let indexPath = tableView.indexPathForSelectedRow else {
                 return
             }
-            let item = fetchedResultsController.object(at: indexPath)
+            let item = dataSource.object(at: indexPath)
             detailVC.item = item
             detailVC.context = self.managedObjectContext
         }
